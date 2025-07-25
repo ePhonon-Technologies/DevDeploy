@@ -21,7 +21,7 @@
 
 ## 🏗️ Repository Structure
 
-``bash
+```bash
 .
 ├── app/                  # Node.js application
 │   ├── src/              # Source code

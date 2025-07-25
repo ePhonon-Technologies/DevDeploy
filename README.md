@@ -21,7 +21,7 @@
 
 ## 🏗️ Repository Structure
 
-```bash
+``bash
 .
 ├── app/                  # Node.js application
 │   ├── src/              # Source code
@@ -41,3 +41,86 @@
 └── .github/workflows/    # GitHub Actions pipelines
     ├── ci.yml            # CI workflow
     └── cd.yml            # CD workflow
+
+🔧 Prerequisites
+Tool	Purpose
+Node.js v16+	Application runtime
+Docker	Containerization
+Terraform	Infrastructure provisioning
+kubectl	Kubernetes cluster interaction
+AWS CLI v2	AWS resource management
+GitHub Secrets	Secure credential storage
+💡 Ensure AWS IAM permissions include EKS, ECR, and VPC management.
+
+⚡ CI/CD Workflow
+🔄 Pipeline Stages
+Continuous Integration (CI)
+
+Code linting (ESLint)
+
+Unit tests (npm test)
+
+Docker image build & push to ECR
+
+Trivy vulnerability scanning
+
+Continuous Deployment (CD)
+
+Terraform plan/apply (infrastructure)
+
+Kustomize environment-specific deployments
+
+Smoke tests post-deployment
+
+🎯 Deployment Strategies
+Environment	Strategy	Rollback Mechanism
+Dev	Rolling Updates	Manual (kubectl rollout undo)
+Production	Blue-Green	Traffic switching (ALB)
+🌐 Infrastructure
+🏗️ EKS Cluster Architecture
+graph TD
+    A[GitHub Actions] --> B[Terraform]
+    B --> C[EKS Cluster]
+    C --> D[Node Groups]
+    D --> E[ECR + ALB]
+
+
+
+
+
+📦 Resource Allocation
+Component	Dev	Production
+Node Type	t3.small	t3.large
+Replicas	1	3
+Scaling	Manual	HPA (CPU 70%)
+🛡️ Security
+Secrets Management: AWS Secrets Manager + GitHub Encrypted Secrets
+
+Container Security:
+
+Trivy scans in CI pipeline
+
+Non-root user in Dockerfiles
+
+Network Policies:
+
+Calico for pod-to-pod communication limits
+
+Ingress restricted to Cloudflare IPs
+
+📊 Monitoring
+Layer	Tools
+Infrastructure	Amazon CloudWatch
+Kubernetes	Prometheus + Grafana
+Application	OpenTelemetry + AWS X-Ray
+🤝 Contributing
+Fork the repository
+
+Create a feature branch (git checkout -b feat/awesome-feature)
+
+Commit changes (git commit -m "Add awesome feature")
+
+Push to branch (git push origin feat/awesome-feature)
+
+Open a Pull Request
+
